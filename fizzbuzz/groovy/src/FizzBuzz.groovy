@@ -24,7 +24,7 @@ class FizzBuzz {
     private static String  FIZZ  = 'Fizz'
     private static String  BUZZ  = 'Buzz'
     private static Integer THREE = 3
-    private static Integer FIVE = 5
+    private static Integer FIVE  = 5
 
     private theNumber
 
@@ -67,4 +67,3 @@ class FizzBuzz {
         return number.toString()
     }
 }
-
