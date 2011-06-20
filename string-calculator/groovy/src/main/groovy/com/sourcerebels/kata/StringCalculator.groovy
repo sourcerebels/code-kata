@@ -22,19 +22,9 @@ class Numbers {
 		numbers.size() == 0
 	}
 
-	public boolean containsDelimiter() {
-
-		numbers.contains delimiter
-	}
-
 	public void replaceEndLinesWithDelimiter() {
 
 		numbers = numbers.replaceAll(NEW_LINE, delimiter)
-	}
-
-	public List<String> split() {
-
-		numbers.split(delimiter)
 	}
 
 	public int sum() {
@@ -51,7 +41,7 @@ class Numbers {
 		
 		numbers.split(delimiter).findAll { Integer.valueOf(it) < 0 }
 	}
-	
+		
 	private void setNumbers(String numbers) {
 
 		if (hasCustomDelimiter(numbers)) {
