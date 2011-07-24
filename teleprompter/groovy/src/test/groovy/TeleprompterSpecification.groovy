@@ -18,7 +18,7 @@ class TeleprompterSpecification extends Specification {
 
     def setup() {
         teleprompter = new Teleprompter()
-	dictionary = [ fuck: "love", piss: "coke" ]
+	dictionary = [ "fuck": "love", "piss": "coke" ]
     }
 
     def "translatingEmptyText"() {
