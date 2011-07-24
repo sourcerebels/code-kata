@@ -22,9 +22,9 @@ class TeleprompterSpecification extends Specification {
     }
 
     def "translatingEmptyText"() {
-	when:
+	when: "we try to translate an empty text"
 	    def result = teleprompter.translate("", dictionary)
-	then:
+	then: "result should be an empty string"
 	    result == ""
     }
 
