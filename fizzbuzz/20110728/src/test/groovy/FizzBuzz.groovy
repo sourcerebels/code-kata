@@ -1,7 +1,7 @@
 class FizzBuzz {
 
-	static final THREE = 3
-	static final FIVE = 5
+	static final FIZZ_DIVISOR = 3
+	static final BUZZ_DIVISOR = 5
 
 	/**
 	 * Give an answer to the current game
@@ -30,11 +30,11 @@ class FizzBuzz {
 
 	private divisibleByThree(def number) {
 
-		return divisibleBy(number, THREE)
+		return divisibleBy(number, FIZZ_DIVISOR)
 	}
 
 	private divisibleByFive(def number) {
 
-		return divisibleBy(number, FIVE)
+		return divisibleBy(number, BUZZ_DIVISOR)
 	}
 }
