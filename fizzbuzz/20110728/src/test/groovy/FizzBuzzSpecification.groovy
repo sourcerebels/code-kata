@@ -22,6 +22,9 @@ class FizzBuzz {
 		
 	static answer(def number) {
 
+		if (divisibleByThree(number) && divisibleByFive(number)) {
+			return "FizzBuzz"
+		}
 		if (divisibleByThree(number)) {
 			return "Fizz"
 		}
