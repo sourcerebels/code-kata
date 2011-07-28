@@ -2,9 +2,17 @@ import spock.lang.*
 
 class FizzBuzz {
 	
+	static divisibleByThree(def number) {
+		
+		if (number == 3 || number == 6 || number == 9) {
+			return true
+		}
+		return false
+	}
+	
 	static answer(def number) {
 
-		if (number == 3 || number == 6 || number == 9) {
+		if (divisibleByThree(number)) {
 			return "Fizz"
 		}
 		return number.toString()
