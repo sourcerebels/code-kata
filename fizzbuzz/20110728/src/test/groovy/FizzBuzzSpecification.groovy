@@ -10,9 +10,10 @@ class FizzBuzz {
 
 class FizzBuzzSpecification extends Specification {
 
-	def "deberia responder el mismo si 1"() {
+	def "deberia responder el mismo si 1 o 2"() {
 		expect:
-			FizzBuzz.answer(1) == "1"			 	
+			FizzBuzz.answer(number) == number.toString()
+		where
+			number << [1, 2]			 	
 	}
-
 }
