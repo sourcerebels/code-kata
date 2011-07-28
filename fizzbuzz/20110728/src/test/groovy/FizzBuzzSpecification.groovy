@@ -31,4 +31,11 @@ class FizzBuzzSpecification extends Specification {
 		where:
 			number << [3, 6, 9]
 	}
+	
+	def "deberia responder Buzz si divisible por 5"() {
+		expect:
+			FizzBuzz.answer(number) == "Buzz"
+		where:
+			number << [5, 10]
+	}
 }
