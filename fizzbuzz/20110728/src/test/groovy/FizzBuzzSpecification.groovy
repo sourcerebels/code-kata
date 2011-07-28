@@ -1,9 +1,12 @@
 import spock.lang.*
 
-
 class FizzBuzz {
 	
 	static answer(def number) {
+
+		if (number == 3) {
+			return "Fizz"
+		}
 		return number.toString()
 	}
 }
