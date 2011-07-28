@@ -6,11 +6,19 @@ class FizzBuzz {
 		
 		return (number % 3 == 0)
 	}
-	
+
+	static divisibleByFive(def number) {
+		
+		return (number % 5 == 0)
+	}
+		
 	static answer(def number) {
 
 		if (divisibleByThree(number)) {
 			return "Fizz"
+		}
+		if (divisibleByFive(number)) {
+			return "Buzz"
 		}
 		return number.toString()
 	}
