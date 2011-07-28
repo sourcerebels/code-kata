@@ -1,0 +1,4 @@
+class FizzBuzzSpecification extends Specification {
+
+
+}
