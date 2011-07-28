@@ -2,6 +2,9 @@ import spock.lang.*
 
 class FizzBuzz {
 	
+	static final THREE = 3
+	static final FIVE = 5
+	
 	static divisibleBy(def number, def divisor) {
 		
 		return (number % divisor == 0)
@@ -9,12 +12,12 @@ class FizzBuzz {
 	
 	static divisibleByThree(def number) {
 		
-		return divisibleBy(number, 3)
+		return divisibleBy(number, THREE)
 	}
 
 	static divisibleByFive(def number) {
 		
-		return divisibleBy(number, 5)
+		return divisibleBy(number, FIVE)
 	}
 		
 	static answer(def number) {
@@ -50,5 +53,12 @@ class FizzBuzzSpecification extends Specification {
 			FizzBuzz.answer(number) == "Buzz"
 		where:
 			number << [5, 10]
+	}
+	
+	def "deberia responder FizzBuzz si divisible por 3 y por 5"() {
+		expect:
+			FizzBuzz.answer(number) == "FizzBuzz"
+		where:
+			number << [15, 30, 45]
 	}
 }
