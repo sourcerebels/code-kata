@@ -4,7 +4,7 @@ import spock.lang.*
 class FizzBuzz {
 	
 	static answer(def number) {
-		return "1"
+		return number.toString()
 	}
 }
 
@@ -13,7 +13,7 @@ class FizzBuzzSpecification extends Specification {
 	def "deberia responder el mismo si 1 o 2"() {
 		expect:
 			FizzBuzz.answer(number) == number.toString()
-		where
+		where:
 			number << [1, 2]			 	
 	}
 }
