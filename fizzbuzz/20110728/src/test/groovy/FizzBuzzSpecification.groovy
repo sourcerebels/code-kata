@@ -4,10 +4,7 @@ class FizzBuzz {
 	
 	static divisibleByThree(def number) {
 		
-		if (number == 3 || number == 6 || number == 9) {
-			return true
-		}
-		return false
+		return (number % 3 == 0)
 	}
 	
 	static answer(def number) {
