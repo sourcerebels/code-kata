@@ -2,14 +2,19 @@ import spock.lang.*
 
 class FizzBuzz {
 	
+	static divisibleBy(def number, def divisor) {
+		
+		return (number % divisor == 0)
+	}
+	
 	static divisibleByThree(def number) {
 		
-		return (number % 3 == 0)
+		return divisibleBy(number, 3)
 	}
 
 	static divisibleByFive(def number) {
 		
-		return (number % 5 == 0)
+		return divisibleBy(number, 5)
 	}
 		
 	static answer(def number) {
