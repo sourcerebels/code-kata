@@ -1,67 +1,38 @@
 import spock.lang.*
 
-class FizzBuzz {
-	
-	static final THREE = 3
-	static final FIVE = 5
-	
-	static divisibleBy(def number, def divisor) {
-		
-		return (number % divisor == 0)
-	}
-	
-	static divisibleByThree(def number) {
-		
-		return divisibleBy(number, THREE)
-	}
-
-	static divisibleByFive(def number) {
-		
-		return divisibleBy(number, FIVE)
-	}
-		
-	static answer(def number) {
-
-		if (divisibleByThree(number) && divisibleByFive(number)) {
-			return "FizzBuzz"
-		}
-		if (divisibleByThree(number)) {
-			return "Fizz"
-		}
-		if (divisibleByFive(number)) {
-			return "Buzz"
-		}
-		return number.toString()
-	}
-}
-
 class FizzBuzzSpecification extends Specification {
 
-	def "deberia responder el mismo si 1 o 2"() {
-		expect:
-			FizzBuzz.answer(number) == number.toString()
-		where:
-			number << [1, 2]			 	
+	FizzBuzz fizzBuzz
+	
+	def "setup"() {
+		fizzBuzz = new FizzBuzz()
 	}
 	
 	def "deberia responder Fizz si divisible por 3"() {
 		expect:
-			FizzBuzz.answer(number) == "Fizz"
+			fizzBuzz.answer(number) == "Fizz"
 		where:
-			number << [3, 6, 9]
+			number << [3, 6, 9, 27]
 	}
-	
+
 	def "deberia responder Buzz si divisible por 5"() {
 		expect:
-			FizzBuzz.answer(number) == "Buzz"
+			fizzBuzz.answer(number) == "Buzz"
 		where:
-			number << [5, 10]
+			number << [5, 10, 50, 500]
 	}
-	
+
 	def "deberia responder FizzBuzz si divisible por 3 y por 5"() {
 		expect:
-			FizzBuzz.answer(number) == "FizzBuzz"
+			fizzBuzz.answer(number) == "FizzBuzz"
 		where:
 			number << [15, 30, 45]
+	}
+
+	def "deberia responder el mismo si no es divisible ni po 3 ni por 5"() {
+		expect:
+			fizzBuzz.answer(number) == number.toString()
+		where:
+			number << [1, 2, 4, 7, 22]
 	}
 }
