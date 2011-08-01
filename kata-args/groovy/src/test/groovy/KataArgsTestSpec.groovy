@@ -5,15 +5,11 @@ class KataArgsTestSpec extends Specification {
 
 	def parser
 	
-	def "setup"() {
-		parser = new ArgumentsParser()
-	}
-	
 	@Unroll
 	def "should parse a simple string value"() {
 		
 		setup:
-			parser.schema = schema
+			parser = new ArgumentsParser(schema: schema)
 			parser.parse(arguments)
 		expect:
 			parser.argumentNumber == 1
@@ -28,7 +24,7 @@ class KataArgsTestSpec extends Specification {
 	def "should parse two string values"() {
 		
 		setup:
-			parser.schema = schema
+			parser = new ArgumentsParser(schema: schema)
 			parser.parse(arguments)
 		expect:
 			parser.argumentNumber == 2
