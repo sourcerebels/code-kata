@@ -9,33 +9,32 @@ class KataArgsTestSpec extends Specification {
 		parser = new ArgumentsParser()
 	}
 	
-	@Unroll("schema: #schema flag: #flag value: #value result: #result")
+	@Unroll
 	def "should parse a simple string value"() {
 		
 		setup:
 			parser.schema = schema
 			parser.parse(arguments)
 		expect:
-			parser.error == ""
 			parser.argumentNumber == 1
-			parser.getValue(flag) == result
-		where: "Arguments are one string value"
+			parser.getArgumentValue(flag) == result
+		where: "different schemas, one string argument"
 			schema | flag | arguments       | result
 			"sv"   | "v" | ["-v", "value"] | "value"
 			"sb"   | "b" | ["-b", "bcn"]   | "bcn"
 	}
 	
+	@Unroll
 	def "should parse two string values"() {
 		
 		setup:
 			parser.schema = schema
 			parser.parse(arguments)
 		expect:
-			parser.error == ""
 			parser.argumentNumber == 2
-			parser.getValue(flag) == result
-		where: "Two string arguments with diferent order from schema's order"
-			schema  | arguments   | flag | result
+			parser.getArgumentValue(flag) == result
+		where: "different schemas, two strings, arguments are unordered"
+			schema  | arguments                   | flag | result
 			"sv sb" | ["-v", "value", "-b","bcn"] | "v" | "value"
 			"sb sv" | ["-v", "value", "-b","bcn"] | "v" | "value"
 			"sv sb" | ["-v", "value", "-b","bcn"] | "b" | "bcn"
