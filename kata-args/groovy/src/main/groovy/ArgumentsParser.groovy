@@ -70,11 +70,6 @@ class ArgumentsParser {
 		return null
 	}
 	
-	private isValidValue(def value) {
-
-		return (value != null)
-	}
-	
 	private schemaAsList() {
 
 		return this.schema.split(SCHEMA_SEPARATOR)
