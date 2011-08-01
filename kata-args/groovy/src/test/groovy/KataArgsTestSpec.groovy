@@ -20,8 +20,8 @@ class KataArgsTestSpec extends Specification {
 			parser.getArgumentValue(flag) == result
 		where: "different schemas, one string argument"
 			schema | flag | arguments       | result
-			"sv"   | "v" | ["-v", "value"]  | "value"
-			"sb"   | "b" | ["-b", "bcn"]    | "bcn"
+			"sv"   | "v"  | ["-v", "value"]  | "value"
+			"sb"   | "b"  | ["-b", "bcn"]    | "bcn"
 	}
 	
 	@Unroll
