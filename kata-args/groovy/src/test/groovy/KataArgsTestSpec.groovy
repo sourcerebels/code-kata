@@ -16,9 +16,8 @@ class KataArgsTestSpec extends Specification {
 			parser.schema = schema
 			parser.parse(arguments)
 		expect:
-			parser.error == ""
 			parser.argumentNumber == 1
-			parser.getValue(flag) == result
+			parser.getArgumentValue(flag) == result
 		where: "Arguments are one string value"
 			schema | flag | arguments       | result
 			"sv"   | "v" | ["-v", "value"] | "value"
@@ -31,9 +30,8 @@ class KataArgsTestSpec extends Specification {
 			parser.schema = schema
 			parser.parse(arguments)
 		expect:
-			parser.error == ""
 			parser.argumentNumber == 2
-			parser.getValue(flag) == result
+			parser.getArgumentValue(flag) == result
 		where: "Two string arguments with diferent order from schema's order"
 			schema  | arguments   | flag | result
 			"sv sb" | ["-v", "value", "-b","bcn"] | "v" | "value"

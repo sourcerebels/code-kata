@@ -1,26 +1,73 @@
-class ArgumentsParser {
+class Argument {
 
 	final static FLAG_TYPE_SCHEMA_INDEX = 0
 	final static FLAG_SCHEMA_INDEX = 1
+
+	def flag
+	def flagType
+	def value
+	
+	def parseSchemaDefinition(def schemaDefinition) {
+
+		flagType = schemaDefinition[FLAG_TYPE_SCHEMA_INDEX]
+		flag = schemaDefinition[FLAG_SCHEMA_INDEX]
+	}
+}
+
+class ArgumentsParser {
+
 	final static SCHEMA_SEPARATOR = " "
+	final static FLAG_INDICATOR = "-"
 		
 	def schema
-	def argumentNumber = 0
-	def error = ""
-	
-	def values = [:]
+	def arguments = [:]
 
-	def isFlag(def argument, def flag) {
+	def parse(def text) {
 		
-		return argument.startsWith("-" + flag)
-	}
-	
-	def addValue(def flag, def value) {
-		
-		values.put(flag, value)
+		schemaAsList().each { argumentDefinition ->
+
+			parseArgument(argumentDefinition, text)
+		}
 	}
 
-	def getArgumentValue(def flag, def arguments) {
+	def getArgumentValue(String flag) {
+
+		return arguments.get(flag).value
+	}
+
+	def getArgumentNumber() {
+
+		return arguments.size()
+	}
+
+	private parseArgument(def argumentDefinition, def text) {
+		
+		Argument argument = new Argument()
+		argument.parseSchemaDefinition(argumentDefinition)
+		setArgumentValue(argument, text)
+		addArgument(argument)
+	}
+
+	private setArgumentValue(Argument argument, def text) {
+		
+		def value = getArgumentValue(argument.flag, text)
+		if (isValidValue(value)) {
+			
+			argument.value = value
+		}
+	}
+
+	private addArgument(def argument) {
+		
+		arguments.put(argument.flag, argument)
+	}
+
+	private isFlag(def argument, def flag) {
+		
+		return (argument == FLAG_INDICATOR + flag)
+	}
+	
+	private getArgumentValue(def flag, def arguments) {
 		
 		for (def i = 0; i < arguments.size(); i++) {
 			
@@ -32,32 +79,13 @@ class ArgumentsParser {
 		return null
 	}
 	
-	def isValidValue(def value) {
+	private isValidValue(def value) {
 
 		return (value != null)
 	}
 	
-	def schemaAsList() {
+	private schemaAsList() {
 
 		return this.schema.split(SCHEMA_SEPARATOR)
-	}
-	
-	def parse(def arguments) {
-
-		schemaAsList().each { schemaDefinition ->
-			
-			def flagType = schemaDefinition[FLAG_TYPE_SCHEMA_INDEX]
-			def flag = schemaDefinition[FLAG_SCHEMA_INDEX]
-
-			def value = getArgumentValue(flag, arguments)
-			if (isValidValue(value)) {
-				addValue(flag, value)
-				argumentNumber++
-			}
-		}
-	}
-	
-	def getValue(String flag) {
-		return values.get(flag)
 	}
 }
