@@ -33,7 +33,7 @@ class KataArgsTestSpec extends Specification {
 		expect:
 			parser.argumentNumber == 2
 			parser.getArgumentValue(flag) == result
-		where: "different schemas, two strings, arguments are unordered"
+		where: "different schemas, two strings, arguments are unsorted"
 			schema  | arguments                   | flag | result
 			"sv sb" | ["-v", "value", "-b","bcn"] | "v" | "value"
 			"sb sv" | ["-v", "value", "-b","bcn"] | "v" | "value"
