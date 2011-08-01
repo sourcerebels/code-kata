@@ -31,9 +31,9 @@ class KataArgsTestSpec extends Specification {
 			parser.getArgumentValue(flag) == result
 		where: "different schemas, two strings, arguments are unsorted"
 			schema  | arguments                   | flag | result
-			"sv sb" | ["-v", "value", "-b","bcn"] | "v" | "value"
-			"sb sv" | ["-v", "value", "-b","bcn"] | "v" | "value"
-			"sv sb" | ["-v", "value", "-b","bcn"] | "b" | "bcn"
-			"sb sv" | ["-v", "value", "-b","bcn"] | "b" | "bcn"
+			"sv sb" | ["-v", "value", "-b","bcn"] | "v"  | "value"
+			"sb sv" | ["-v", "value", "-b","bcn"] | "v"  | "value"
+			"sv sb" | ["-v", "value", "-b","bcn"] | "b"  | "bcn"
+			"sb sv" | ["-v", "value", "-b","bcn"] | "b"  | "bcn"
 	}
 }
