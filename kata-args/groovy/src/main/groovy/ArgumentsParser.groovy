@@ -22,11 +22,11 @@ class ArgumentsParser {
 	def schema
 	def arguments = [:]
 
-	def parse(def text) {
+	def parse(def args) {
 		
 		schemaAsList().each { argumentDefinition ->
 
-			parseArgument(argumentDefinition, text)
+			parseArgument(argumentDefinition, args)
 		}
 	}
 
@@ -40,17 +40,17 @@ class ArgumentsParser {
 		return arguments.size()
 	}
 
-	private parseArgument(def argumentDefinition, def text) {
+	private parseArgument(def argumentDefinition, def args) {
 		
 		Argument argument = new Argument()
 		argument.parseSchemaDefinition(argumentDefinition)
-		setArgumentValue(argument, text)
+		setArgumentValue(argument, args)
 		addArgument(argument)
 	}
 
-	private setArgumentValue(Argument argument, def text) {
+	private setArgumentValue(Argument argument, def args) {
 		
-		def value = getArgumentValue(argument.flag, text)
+		def value = getArgumentValue(argument.flag, args)
 		if (isValidValue(value)) {
 			
 			argument.value = value
@@ -67,13 +67,13 @@ class ArgumentsParser {
 		return (argument == FLAG_INDICATOR + flag)
 	}
 	
-	private getArgumentValue(def flag, def arguments) {
+	private getArgumentValue(def flag, def args) {
 		
-		for (def i = 0; i < arguments.size(); i++) {
+		for (def i = 0; i < args.size(); i++) {
 			
-			if(isFlag(arguments[i], flag)) {
+			if(isFlag(args[i], flag)) {
 				
-				return arguments[i + 1]
+				return args[i + 1]
 			}
 		}
 		return null
