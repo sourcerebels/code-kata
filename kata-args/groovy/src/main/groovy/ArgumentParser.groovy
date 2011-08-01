@@ -1,40 +1,38 @@
-class Argument {
-
-	final static FLAG_TYPE_SCHEMA_INDEX = 0
-	final static FLAG_SCHEMA_INDEX = 1
-
-	def flag
-	def flagType
-	def value
-	
-	def parseSchemaDefinition(def schemaDefinition) {
-
-		flagType = schemaDefinition[FLAG_TYPE_SCHEMA_INDEX]
-		flag = schemaDefinition[FLAG_SCHEMA_INDEX]
-	}
-}
-
-class ArgumentsParser {
+class ArgumentParser {
 
 	final static SCHEMA_SEPARATOR = " "
 	final static FLAG_INDICATOR = "-"
 		
 	def schema
-	def arguments = [:]
+	def arguments
 
-	def parse(def args) {
+	/**
+	 * Parse arguments from argument list.
+	 * @param args Argument list.
+	 */
+	def parse(List<String> args) {
 		
+		arguments = [:]
 		schemaAsList().each { argumentDefinition ->
 
 			parseArgument(argumentDefinition, args)
 		}
 	}
 
+	/**
+	 * Gets the value of an argument identified by a flag.
+	 * @param flag The flag which identifies the argument.
+	 * @return The value.
+	 */
 	def getArgumentValue(String flag) {
 
 		return arguments.get(flag).value
 	}
 
+	/**
+	 * Gets the number of parsed arguments.
+	 * @return Number of parsed arguments.
+	 */
 	def getArgumentNumber() {
 
 		return arguments.size()
@@ -69,7 +67,7 @@ class ArgumentsParser {
 		}
 		return null
 	}
-	
+		
 	private schemaAsList() {
 
 		return this.schema.split(SCHEMA_SEPARATOR)
