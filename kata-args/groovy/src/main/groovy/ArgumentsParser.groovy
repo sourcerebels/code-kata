@@ -44,17 +44,8 @@ class ArgumentsParser {
 		
 		Argument argument = new Argument()
 		argument.parseSchemaDefinition(argumentDefinition)
-		setArgumentValue(argument, args)
+		argument.value = getArgumentValue(argument.flag, args)
 		addArgument(argument)
-	}
-
-	private setArgumentValue(Argument argument, def args) {
-		
-		def value = getArgumentValue(argument.flag, args)
-		if (isValidValue(value)) {
-			
-			argument.value = value
-		}
 	}
 
 	private addArgument(def argument) {
